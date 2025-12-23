@@ -1,209 +1,170 @@
-# WorkflowUp - Django Role-Based Access Control System
+# WorkflowUp - Sistema Django de Control de Acceso Basado en Roles
 
-A comprehensive Django 5.2.8 web application implementing role-based access control (RBAC) for project and workflow management. Features custom user authentication, user administration, and role-specific access controls.
+Una aplicación web completa desarrollada en Django 5.2.8 que implementa control de acceso basado en roles (RBAC) para gestión de proyectos y flujos de trabajo. Incluye autenticación personalizada de usuarios, administración de usuarios y controles de acceso específicos por rol.
 
-## Features
+## Características
 
-- **Custom User Model** with 5 distinct roles
-- **User Administration** module (admin-only access)
-- **Role-Based Navigation** (dynamic based on user role)
-- **Complete Authentication** (login, logout, password change, password reset)
-- **Workflow Dashboard** (all authenticated users)
-- **Responsive UI** with Tailwind CSS
-- **Security Features** (CSRF, XSS protection, password hashing)
-- **Soft Delete** (users can be deactivated, not deleted)
+- **Modelo de Usuario Personalizado** con 5 roles distintos
+- **Módulo de Administración de Usuarios** (acceso solo para administradores)
+- **Navegación Basada en Roles** (dinámica según el rol del usuario)
+- **Autenticación Completa** (inicio de sesión, cierre de sesión, cambio de contraseña, recuperación de contraseña)
+- **Panel de Workflow** (todos los usuarios autenticados)
+- **Interfaz Responsiva** con Tailwind CSS
+- **Características de Seguridad** (protección CSRF, protección XSS, hash de contraseñas)
+- **Eliminación Lógica** (los usuarios pueden desactivarse, no eliminarse)
 
-## User Roles
+## Roles de Usuario
 
-1. **Administrador** - Full system access including user management
-2. **Jefe de Proyecto** - Project management capabilities
-3. **SCM** - Software Configuration Management
-4. **Release Manager** - Release management
-5. **QA** - Quality Assurance
+1. **Administrador** - Acceso completo al sistema incluyendo gestión de usuarios
+2. **Jefe de Proyecto** - Capacidades de gestión de proyectos
+3. **SCM** - Gestión de Configuración de Software
+4. **Release Manager** - Gestión de lanzamientos
+5. **QA** - Aseguramiento de Calidad
 
-## Quick Start
+## Inicio Rápido
 
-### Prerequisites
+### Requisitos Previos
 
 - Python 3.13
 - MySQL 8.0+
-- Virtual environment (already set up in `py-env/`)
+- Entorno virtual (ya configurado en `py-env/`)
 
-### Start the Application
+### Iniciar la Aplicación
 
 ```bash
-# Navigate to project directory
+# Navegar al directorio del proyecto
 cd /Users/ipenaloza/WorkflowUp/@_version_2/workflowup2/workflowup
 
-# Run the development server
+# Ejecutar el servidor de desarrollo
 python manage.py runserver
 ```
 
-Open your browser: **http://127.0.0.1:8000/**
+Abrir el navegador en: **http://127.0.0.1:8000/**
 
-### Test Accounts
+## Documentación
 
-| Username | Password | Role | Access |
-|----------|----------|------|--------|
-| admin | admin123 | Administrador | User Admin + Workflow |
-| qa_tester | test123 | QA | Workflow only |
+Este proyecto incluye documentación completa:
 
-See **QUICK_START.md** for more test accounts and detailed usage.
-
-## Documentation
-
-This project includes comprehensive documentation:
-
-### 1. QUICK_START.md
-- **Purpose:** Get up and running in minutes
-- **Contents:** Login credentials, basic navigation, quick tests
-- **Audience:** First-time users
-
-### 2. IMPLEMENTATION_SUMMARY.md
-- **Purpose:** Understand the architecture and design
-- **Contents:** Complete technical documentation, file structure, design decisions
-- **Audience:** Developers, maintainers
-
-### 3. TESTING_GUIDE.md
-- **Purpose:** Comprehensive testing checklist
-- **Contents:** All test scenarios, verification steps, edge cases
-- **Audience:** QA testers, developers
-
-### 4. CLAUDE.md
-- **Purpose:** Project overview and development commands
-- **Contents:** Structure, dependencies, common operations
-- **Audience:** Developers
-
-## Project Structure
+## Estructura del Proyecto
 
 ```
 workflowup2/
-├── README.md                        # This file
-├── QUICK_START.md                   # Quick start guide
-├── IMPLEMENTATION_SUMMARY.md        # Technical documentation
-├── TESTING_GUIDE.md                 # Testing checklist
-├── CLAUDE.md                        # Project overview
-├── reset_db.py                      # Database reset utility
-├── setup_users.py                   # Test user creation
-├── py-env/                          # Virtual environment
-└── workflowup/                      # Django project
+├── README.md                        # Este archivo
+├── QUICK_START.md                   # Guía de inicio rápido
+├── IMPLEMENTATION_SUMMARY.md        # Documentación técnica
+├── TESTING_GUIDE.md                 # Lista de verificación de pruebas
+├── CLAUDE.md                        # Resumen del proyecto
+├── reset_db.py                      # Utilidad de reinicio de base de datos
+├── setup_users.py                   # Creación de usuarios de prueba
+├── py-env/                          # Entorno virtual
+└── workflowup/                      # Proyecto Django
     ├── manage.py
-    ├── templates/                   # Global templates
-    ├── users_admin/                 # User administration app
-    ├── workflow/                    # Workflow app
-    └── workflowup/                  # Settings package
+    ├── templates/                   # Plantillas globales
+    ├── users_admin/                 # App de administración de usuarios
+    ├── workflow/                    # App de workflow
+    └── workflowup/                  # Paquete de configuración
 ```
 
-## Technology Stack
+## Stack Tecnológico
 
 - **Backend:** Django 5.2.8
-- **Database:** MySQL 8.0
+- **Base de Datos:** MySQL 8.0
 - **Python:** 3.13
 - **Frontend:** HTML5, Tailwind CSS (CDN)
-- **Authentication:** Django built-in auth system
+- **Autenticación:** Sistema de autenticación integrado de Django
 
-## Key Features Details
+## Detalles de Características Clave
 
-### Custom User Model
-- Extends Django's `AbstractUser`
-- Additional `role` field with 5 choices
-- Unique email constraint
-- Required first/last name
-- Soft delete protection
+### Modelo de Usuario Personalizado
+- Extiende `AbstractUser` de Django
+- Campo adicional `role` con 5 opciones
+- Restricción de email único
+- Nombre y apellido requeridos
+- Protección contra eliminación física
 
-### User Administration
-- **List View:** Search, filter, pagination
-- **Create View:** Full user creation with validation
-- **Update View:** Edit role and active status only
-- **No Delete:** Physical deletion prevented
-- **Access Control:** Admin role required
+### Administración de Usuarios
+- **Vista de Lista:** Búsqueda, filtros, paginación
+- **Vista de Creación:** Creación completa de usuarios con validación
+- **Vista de Actualización:** Editar solo rol y estado activo
+- **Sin Eliminación:** Eliminación física prevenida
+- **Control de Acceso:** Requiere rol de Administrador
 
-### Authentication System
-- Login at root URL (`/`)
-- Session-based authentication
-- Password change for authenticated users
-- Email-based password reset
-- Console email backend (development)
+### Sistema de Autenticación
+- Inicio de sesión en URL raíz (`/`)
+- Autenticación basada en sesiones
+- Cambio de contraseña para usuarios autenticados
+- Recuperación de contraseña basada en email
+- Backend de email de consola (desarrollo)
 
-### Workflow Application
-- Main dashboard after login
-- Shows user name and role
-- Accessible to all authenticated users
-- Placeholder for future features
+### Aplicación Workflow
+- Panel principal después del inicio de sesión
+- Muestra nombre y rol del usuario
+- Accesible para todos los usuarios autenticados
+- Marcador de posición para funciones futuras
 
-### Role-Based Navigation
-- **Administrador:** User Admin + Workflow + Password Change
-- **Other Roles:** Workflow + Password Change
-- Dynamic based on user role
-- Implemented via context processor
+### Navegación Basada en Roles
+- **Administrador:** Admin de Usuarios + Workflow + Cambio de Contraseña
+- **Otros Roles:** Workflow + Cambio de Contraseña
+- Dinámica según rol del usuario
+- Implementada mediante procesador de contexto
 
-### Security Features
-- CSRF protection on all forms
-- Password hashing (PBKDF2)
-- XSS prevention (auto-escaping)
-- SQL injection prevention (ORM)
-- Session management
-- Login required decorators
+### Características de Seguridad
+- Protección CSRF en todos los formularios
+- Hash de contraseñas (PBKDF2)
+- Prevención XSS (auto-escape)
+- Prevención de inyección SQL (ORM)
+- Gestión de sesiones
+- Decoradores de login requerido
 
-## Development
+## Desarrollo
 
-### Common Commands
+### Comandos Comunes
 
 ```bash
-# Create migrations
+# Crear migraciones
 python workflowup/manage.py makemigrations
 
-# Apply migrations
+# Aplicar migraciones
 python workflowup/manage.py migrate
 
-# Create superuser
+# Crear superusuario
 python workflowup/manage.py createsuperuser
 
-# Django shell
+# Shell de Django
 python workflowup/manage.py shell
 
-# Run tests
+# Ejecutar pruebas
 python workflowup/manage.py test
 
-# Check for issues
+# Verificar problemas
 python workflowup/manage.py check
-```
-
-### Database Reset
-
-If you need to reset the database:
-
-```bash
-python reset_db.py
-python workflowup/manage.py migrate
-python setup_users.py
 ```
 
 ## URLs
 
-- **Root:** `/` - Login page
-- **Logout:** `/logout/`
-- **Password Change:** `/password-change/`
-- **Password Reset:** `/password-reset/`
-- **User Admin:** `/usuarios/` (admin only)
+- **Raíz:** `/` - Página de inicio de sesión
+- **Cerrar sesión:** `/logout/`
+- **Cambio de contraseña:** `/password-change/`
+- **Recuperar contraseña:** `/password-reset/`
+- **Admin de Usuarios:** `/usuarios/` (solo admin)
 - **Workflow:** `/workflow/`
-- **Django Admin:** `/admin/`
+- **Admin de Django:** `/admin/`
 
-## Testing
+## Pruebas
 
-See **TESTING_GUIDE.md** for comprehensive testing checklist including:
+Ver **TESTING_GUIDE.md** para lista de verificación completa de pruebas incluyendo:
 
-- Authentication flow tests
-- Authorization tests (role-based)
-- User CRUD operations
-- Password management
-- UI/UX verification
-- Security testing
-- Edge cases
+- Pruebas de flujo de autenticación
+- Pruebas de autorización (basadas en roles)
+- Operaciones CRUD de usuarios
+- Gestión de contraseñas
+- Verificación UI/UX
+- Pruebas de seguridad
+- Casos límite
 
-## Configuration
+## Configuración
 
-### Database
+### Base de Datos
 
 ```python
 # workflowup/workflowup/settings.py
@@ -219,118 +180,67 @@ DATABASES = {
 }
 ```
 
-### Email (Development)
+### Email (Desarrollo)
 
 ```python
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ```
 
-Password reset emails print to terminal during development.
+Los emails de recuperación de contraseña se imprimen en la terminal durante el desarrollo.
 
-## Screenshots
 
-### Login Page
-- Blue header with "WorkflowUp"
-- Login form (username/password)
-- "Forgot password" link
+Antes de desplegar en producción:
 
-### User Administration (Admin Only)
-- User list with search and filters
-- Create/edit user forms
-- Role and status management
-
-### Workflow Dashboard
-- User name and role display
-- Navigation based on role
-- Placeholder for workflow features
-
-## Known Limitations
-
-1. No user profile editing (users can't update their own info)
-2. No email verification on user creation
-3. Basic password requirements (Django defaults)
-4. No account lockout after failed attempts
-5. No audit logging
-6. Console email backend (development only)
-
-## Future Enhancements
-
-### Short-term
-- User profile editing
-- Admin dashboard with statistics
-- Audit logging for user changes
-- Better error handling
-
-### Long-term
-- Email verification
-- Two-factor authentication
-- API endpoints
-- Advanced role permissions
-- Workflow-specific features
-
-## Production Deployment
-
-Before deploying to production:
-
-1. **Security**
-   - Change SECRET_KEY
-   - Set DEBUG = False
-   - Configure ALLOWED_HOSTS
-   - Use environment variables for secrets
+1. **Seguridad**
+   - Cambiar SECRET_KEY
+   - Establecer DEBUG = False
+   - Configurar ALLOWED_HOSTS
+   - Usar variables de entorno para secretos
 
 2. **Email**
-   - Configure SMTP settings
-   - Test email delivery
+   - Configurar ajustes SMTP
+   - Probar entrega de emails
 
-3. **Database**
-   - Use production database
-   - Set up automated backups
+3. **Base de Datos**
+   - Usar base de datos de producción
+   - Configurar respaldos automatizados
 
-4. **Static Files**
-   - Run collectstatic
-   - Configure web server
+4. **Archivos Estáticos**
+   - Ejecutar collectstatic
+   - Configurar servidor web
 
-5. **Monitoring**
-   - Set up error logging
-   - Configure application monitoring
+5. **Monitoreo**
+   - Configurar registro de errores
+   - Configurar monitoreo de aplicación
 
-See **IMPLEMENTATION_SUMMARY.md** for complete deployment checklist.
 
-## Support
+### Problemas Comunes
 
-### Documentation
-- **QUICK_START.md** - Quick start guide
-- **IMPLEMENTATION_SUMMARY.md** - Technical documentation
-- **TESTING_GUIDE.md** - Testing checklist
-- **CLAUDE.md** - Project overview
+**No puedo iniciar sesión:** Verificar usuario/contraseña, verificar que el usuario esté activo
 
-### Common Issues
+**Permiso denegado:** Verificar que el usuario tenga el rol correcto (Administrador para admin de usuarios)
 
-**Can't login:** Check username/password, verify user is active
+**Plantillas no encontradas:** Verificar TEMPLATES DIRS en settings.py
 
-**Permission denied:** Verify user has correct role (Administrador for user admin)
+**Errores de base de datos:** Ejecutar `python reset_db.py` y migrar nuevamente
 
-**Templates not found:** Check TEMPLATES DIRS in settings.py
+## Créditos
 
-**Database errors:** Run `python reset_db.py` and migrate again
-
-## Credits
-
-- **Developer:** Iván Peñaloza
-- **Institution:** Universidad Andrés Bello
-- **Project Type:** Proyecto de título
-- **Year:** 2025
+- **Desarrollador:** Iván Peñaloza
+- **Institución:** Universidad Andrés Bello
+- **Tipo de Proyecto:** Proyecto de título
+- **Año:** 2025
 - **Framework:** Django 5.2.8
 
-## License
+## Licencia
 
-Educational/Academic Use
+Uso Educativo/Académico
 
-## Contact
+## Contacto
 
-For questions or issues related to this project:
+Para preguntas o problemas relacionados con este proyecto:
 - Email: i.pealozazamora@uandresbello.edu
 
 ---
 
-**Start using WorkflowUp today!** See QUICK_START.md to get started.
+**¡Comienza a usar WorkflowUp hoy!** Ver QUICK_START.md para empezar.
